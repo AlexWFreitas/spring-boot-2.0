@@ -1,24 +1,39 @@
 package com.frankmoley.lil.sbet.landon.roomwebapp.models;
 
+import javax.persistence.*;
+import java.util.UUID;
+
+@Entity
+@Table(name="Employee")
 public class StaffMember {
-    private String id;
+    @Id
+    @Column(name="EMPLOYEE_ID")
+    private String employeeId;
+    @Column(name="FIRST_NAME")
     private String lastName;
+    @Column(name="LAST_NAME")
     private String firstName;
+    @Column(name="POSITION")
+    @Enumerated(EnumType.STRING)
     private Position position;
 
-    public StaffMember(String id, String lastName, String firstName, Position position) {
-        this.id = id;
+    public StaffMember() {
+        this.employeeId = UUID.randomUUID().toString();
+    }
+
+    public StaffMember(String employeeId, String lastName, String firstName, Position position) {
+        this.employeeId = employeeId;
         this.lastName = lastName;
         this.firstName = firstName;
         this.position = position;
     }
 
-    public String getId() {
-        return id;
+    public String getEmployeeId() {
+        return employeeId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setEmployeeId(String id) {
+        this.employeeId = id;
     }
 
     public String getLastName() {
